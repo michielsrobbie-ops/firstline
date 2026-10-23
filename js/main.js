@@ -11,12 +11,24 @@
     });
   }
 
-  // Повод vooraf kiezen via ?povod=svatba / firmeno
+  // Teksten per taal
+  var lang = (document.documentElement.lang || 'bg').slice(0, 2);
+  var T = {
+    bg: { fill: 'Моля, попълнете полето', sending: 'Изпращане…', ok: 'Запитването е изпратено. Ще се свържем с Вас.', err: 'Запитването не беше изпратено. Опитайте отново или ни се обадете на 088 686 1001.' },
+    en: { fill: 'Please fill in', sending: 'Sending…', ok: 'Your enquiry has been sent. We will get back to you.', err: 'Your enquiry was not sent. Please try again or call us on +359 88 686 1001.' },
+    ru: { fill: 'Пожалуйста, заполните поле', sending: 'Отправка…', ok: 'Запрос отправлен. Мы свяжемся с вами.', err: 'Запрос не отправлен. Попробуйте ещё раз или позвоните нам: +359 88 686 1001.' }
+  }[lang] || null;
+  if (!T) T = { fill: 'Моля, попълнете полето', sending: 'Изпращане…', ok: 'Запитването е изпратено.', err: 'Грешка.' };
+
+  // Повод vooraf kiezen via ?povod=svatba / firmeno / masa (werkt in alle talen via data-key)
   var reason = document.getElementById('c-reason');
   if (reason) {
     var p = new URLSearchParams(location.search).get('povod');
-    var map = { svatba: 'Сватба', firmeno: 'Фирмено тържество', masa: 'Маса в ресторанта' };
-    if (p && map[p]) reason.value = map[p];
+    if (p) {
+      Array.prototype.forEach.call(reason.options, function (o, i) {
+        if (o.getAttribute('data-key') === p) reason.selectedIndex = i;
+      });
+    }
   }
 
   // Formulieren
@@ -40,21 +52,22 @@
       });
       if (firstInvalid) {
         var label = form.querySelector('label[for="' + firstInvalid.id + '"]');
-        setStatus('Моля, попълнете полето „' + (label ? label.textContent.trim() : '') + '“.', 'err');
+        var name = label ? label.childNodes[0].textContent.trim() : '';
+        setStatus(T.fill + ' „' + name + '“.', 'err');
         firstInvalid.focus();
         return;
       }
 
       button.disabled = true;
-      setStatus('Изпращане…');
+      setStatus(T.sending);
       fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) })
         .then(function (res) {
           if (!res.ok) throw new Error('send failed');
           form.reset();
-          setStatus('Запитването е изпратено. Ще се свържем с Вас.', 'ok');
+          setStatus(T.ok, 'ok');
         })
         .catch(function () {
-          setStatus('Запитването не беше изпратено. Опитайте отново или ни се обадете на 088 686 1001.', 'err');
+          setStatus(T.err, 'err');
         })
         .finally(function () { button.disabled = false; });
     });

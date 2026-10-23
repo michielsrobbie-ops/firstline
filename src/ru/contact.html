@@ -1,0 +1,75 @@
+<!--
+title: Контакты – First Line, Кранево
+description: First Line Restaurant &amp; Bar, Центральный пляж, 9649 Кранево. Телефон +359 88 686 1001. Бронирование стола и запросы на свадьбу или корпоратив.
+og_image: img/home-hero.jpg
+-->
+<main id="top">
+
+  <section class="page-hero page-hero-simple">
+    <div class="wrap">
+      <h1>Контакты</h1>
+      <p class="lead">Позвоните, чтобы забронировать стол, или отправьте запрос на мероприятие.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="zapitvane">
+    <div class="wrap contact-grid">
+      <div>
+        <dl class="contact-list">
+          <div><dt>Адрес</dt><dd>Центральный пляж, 9649 Кранево</dd></div>
+          <div><dt>Телефон</dt><dd><a href="tel:+359886861001">+359 88 686 1001</a></dd></div>
+          <div><dt>Эл. почта</dt><dd><a href="mailto:kranevo.firstline@gmail.com">kranevo.firstline@gmail.com</a></dd></div>
+          <div><dt>Соцсети</dt><dd><a href="https://www.facebook.com/firstlinebar" rel="noopener">Facebook</a> и <a href="https://www.instagram.com/first_line_restaurant_kranevo/" rel="noopener">Instagram</a></dd></div>
+        </dl>
+        <iframe class="map" title="Карта: First Line на Центральном пляже в Кранево" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=43.3431436,28.0705318&amp;z=16&amp;hl=ru&amp;output=embed"></iframe>
+        <p class="map-link"><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=43.3431436,28.0705318" rel="noopener">Маршрут в Google Maps</a></p>
+      </div>
+
+      <form class="form" data-form action="https://formsubmit.co/ajax/kranevo.firstline@gmail.com" method="post" novalidate>
+        <input type="hidden" name="_subject" value="Запрос с сайта (RU)">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field field-wide">
+          <label for="c-reason">Повод</label>
+          <select id="c-reason" name="Повод">
+            <option data-key="masa">Стол в ресторане</option>
+            <option data-key="svatba">Свадьба</option>
+            <option data-key="firmeno">Корпоратив</option>
+            <option data-key="drugo">Другое мероприятие</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-name">Имя</label>
+          <input id="c-name" name="Имя" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="c-phone">Телефон</label>
+          <input id="c-phone" name="Телефон" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="field field-wide">
+          <label for="c-email">Эл. почта</label>
+          <input id="c-email" name="Email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="c-date">Дата</label>
+          <input id="c-date" name="Дата" type="date">
+        </div>
+        <div class="field">
+          <label for="c-guests">Количество гостей</label>
+          <input id="c-guests" name="Количество гостей" type="number" min="1" inputmode="numeric">
+        </div>
+        <div class="field field-wide">
+          <label for="c-note">Сообщение <span class="optional">(необязательно)</span></label>
+          <textarea id="c-note" name="Сообщение" rows="4"></textarea>
+        </div>
+
+        <div class="form-footer field-wide">
+          <button class="btn" type="submit">Отправить запрос</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
