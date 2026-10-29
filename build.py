@@ -259,13 +259,14 @@ def build():
                 body = body.replace("{{" + k + "}}", L["pages"][k])
 
             nav_items = "\n".join(
-                f'        <li><a href="{L["pages"][k]}"{" aria-current=\"page\"" if k == key else ""}>{L["nav"][k]}</a></li>'
+                '        <li><a href="%s"%s>%s</a></li>'
+                % (L["pages"][k], ' aria-current="page"' if k == key else "", L["nav"][k])
                 for k in KEYS
             )
             footer_items = "\n".join(f'        <li><a href="{L["pages"][k]}">{L["nav"][k]}</a></li>' for k in KEYS)
             lang_items = "\n".join(
-                f'        <a href="{rel(code, c, key)}" hreflang="{c}" lang="{c}"'
-                f'{" aria-current=\"true\"" if c == code else ""}>{LANGS[c]["label"]}</a>'
+                '        <a href="%s" hreflang="%s" lang="%s"%s>%s</a>'
+                % (rel(code, c, key), c, c, ' aria-current="true"' if c == code else "", LANGS[c]["label"])
                 for c in LANGS
             )
             alternates = "\n".join(
