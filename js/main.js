@@ -1,5 +1,5 @@
 // First Line – navigatie, formulieren (FormSubmit) en galerij-lightbox.
-// FormSubmit: de eerste inzending naar kranevo.firstline@gmail.com vraagt een activatie via mail.
+// FormSubmit: inzendingen gaan naar events@firstlinekranevo.com (voorlopig, campagne-adres); de eerste inzending vraagt een activatie via mail.
 (function () {
   // Mobiel menu
   var toggle = document.querySelector('.nav-toggle');
